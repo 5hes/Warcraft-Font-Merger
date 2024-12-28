@@ -16,13 +16,14 @@ jobs:
     steps:
     - uses: actions/checkout@v4.2.2
 
-    - uses: xmake-io/github-action-setup-xmake@v1
-      with:
-        xmake-version: latest
-
+    # - uses: xmake-io/github-action-setup-xmake@v1
+    #   with:
+    #     xmake-version: latest
+    
+    - run: suo apt update && sudo apt install make -y
+    
     - name: Building
       run: |
-        xmake
         package/linux-amd64.sh
 
     - name: Upload a Build Artifact
