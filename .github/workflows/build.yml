@@ -1,0 +1,38 @@
+name: build
+
+on:
+  workflow_dispatch:
+    inputs:
+      build:
+        description: "Build otfccpp branch"
+        required: true
+        type: boolean
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4.2.2
+
+    - uses: xmake-io/github-action-setup-xmake@v1
+      with:
+        xmake-version: latest
+
+    - name: Building
+      run: |
+        package/linux-amd64.sh
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.5.0
+      with:
+        name: build
+        path: build/**
+
+    
+
+
+
+
+  
+        
