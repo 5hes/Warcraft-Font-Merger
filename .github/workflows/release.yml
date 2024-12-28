@@ -1,0 +1,37 @@
+name: release
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      build:
+        description: "Release latest build"
+        required: true
+        type: boolean
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4.2.2
+
+    - name: Push a tag
+      run: |
+        TAG="v1.2.0"
+        git tag "$TAG"
+        git push origin "$TAG"
+        
+    - name: Released file
+      run: |
+        wget -O zip.zip "https://productionresultssa0.blob.core.windows.net/actions-results/d809e198-1cc9-4097-9221-c05369691b1b/workflow-job-run-ca395085-040a-526b-2ce8-bdc85f692774/artifacts/44575cf5b28512d75644bf54a517dcef304ff809fd511747621b4d64f19aac66.zip?rscd=attachment%3B+filename%3D%22build.zip%22&se=2024-12-28T04%3A08%3A12Z&sig=mz8HUAoJQCnI%2FwUu%2FsGTQfP61YRFJsCbR8s5HFt%2Fk5o%3D&ske=2024-12-28T15%3A09%3A37Z&skoid=ca7593d4-ee42-46cd-af88-8b886a2f84eb&sks=b&skt=2024-12-28T03%3A09%3A37Z&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skv=2024-11-04&sp=r&spr=https&sr=b&st=2024-12-28T03%3A58%3A07Z&sv=2024-11-04"
+        unzip zip.zip -d Released
+        ls Released
+
+    - name: GH Release
+      uses: softprops/action-gh-release@v2
+      with:
+        body: latest otfcc++ branch build
+        name: otfcc v1.2.0
+        tag_name: v1.2.0
+        files: build/*
