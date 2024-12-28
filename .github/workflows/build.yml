@@ -16,9 +16,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4.2.2
 
-    - uses: xmake-io/github-action-setup-xmake@v1
-      with:
-        xmake-version: latest
+#     - uses: xmake-io/github-action-setup-xmake@v1
+#       with:
+#         xmake-version: latest
     
     # - run: sudo apt update && sudo apt install make -y
 
@@ -30,7 +30,7 @@ jobs:
 
     - name: Building
       run: |
-        podman run -it --rm -v $PWD:/mnt -v /mnt -e XMAKE_ROOT=y alpine
+        podman run -it --rm -v $PWD:/mnt -e XMAKE_ROOT=y alpine
         apk add bash xmake gcc g++ xz
         xmake f -v
         # package/dev.sh
