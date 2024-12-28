@@ -42,8 +42,8 @@ jobs:
         curl -fsSL http://archive.ubuntu.com/ubuntu/project/ubuntu-archive-keyring.gpg | sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/ubuntu.gpg
         sudo apt-get update
         apt list --upgradable
-        sudo apt-get upgrade
-        sudo apt-get install podman
+        sudo apt-get upgrade -y
+        sudo apt-get install podman -y
     
     - name: Building
       run: |
