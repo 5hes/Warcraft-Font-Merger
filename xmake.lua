@@ -16,6 +16,9 @@ rule("static_binary")
 		end
 	end)
 
+-- 添加 spdlog 的头文件路径
+add_includedirs("3rdparty/spdlog/include", {public = true})
+
 target("merge-otd")
 	set_kind("binary")
 	add_rules("static_binary")
