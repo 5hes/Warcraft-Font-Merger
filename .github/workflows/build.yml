@@ -26,7 +26,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get upgrade -y
-        sudo apt-get install clang gcc g++ xz 
+        sudo apt-get install clang gcc g++ -y
         
     - name: Building
       run: |
