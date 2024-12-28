@@ -30,17 +30,18 @@ jobs:
 
     - name: Building
       run: |
-        podman run -it --rm -v $PWD:/mnt alpine /bin/sh -c "
-          apk update && \
-          apk add bash xmake gcc g++ xz musl-dev linux-headers && \
-          cd /mnt && \
-          export XMAKE_ROOT=y && \
-          xmake f -v && \
-          bash package/linux-amd64.sh && \
-          tree
-        "
+        - name: Run commands in Podman container
+  run: |
+    podman run --rm -v ${{ github.workspace }}:/mnt -w /mnt alpine /bin/sh -c "
+      apk update && \
+      apk add bash xmake gcc g++ xz musl-dev linux-headers spdlog-dev && \
+      export XMAKE_ROOT=y && \
+      xmake f -v && \
+      xmake && \
+      bash package/linux-amd64.sh && \
+      tree
+    "
   
-
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.5.0
       with:
