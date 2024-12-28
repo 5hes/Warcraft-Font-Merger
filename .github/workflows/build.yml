@@ -22,7 +22,9 @@ jobs:
     
     # - run: sudo apt update && sudo apt install make -y
 
-    - run: curl https://nim-lang.org/choosenim/init.sh -sSf | sh -s -- -y
+    - run: |
+        curl https://nim-lang.org/choosenim/init.sh -sSf | sh -s -- -y
+        export PATH=/home/runner/.nimble/bin:$PATH
 
     - name: Building
       run: |
