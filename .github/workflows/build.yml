@@ -30,11 +30,14 @@ jobs:
 
     - name: Building
       run: |
-        podman run -it --rm -v $PWD:/mnt -e XMAKE_ROOT=y alpine
-        apk add bash xmake gcc g++ xz
-        xmake f -v
-        # package/dev.sh
-        package/linux-amd64.sh
+        podman run -it --rm -v $PWD:/mnt alpine /bin/sh -c "
+          apk update && \
+          apk add bash xmake gcc g++ xz && \
+          cd /mnt && \
+          xmake f -v && \
+          bash package/linux-amd64.sh
+        "
+
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.5.0
