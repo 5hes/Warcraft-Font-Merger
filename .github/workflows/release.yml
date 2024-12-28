@@ -18,9 +18,9 @@ jobs:
 
     - name: Push a tag
       run: |
-        TAG="v1.2.0"
-        git tag "$TAG"
-        git push origin "$TAG"
+        # TAG="v1.2.0"
+        # git tag "$TAG"
+        # git push origin "$TAG"
         
     - name: Released file
       run: |
