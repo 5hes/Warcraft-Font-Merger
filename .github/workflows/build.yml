@@ -22,14 +22,9 @@ jobs:
     
     # - run: sudo apt update && sudo apt install make -y
 
-    - name: Setup
-      run: |
-        sudo apt-get update
-        sudo apt-get upgrade -y
-        sudo apt-get install clang gcc g++ -y
-        
     - name: Building
       run: |
+        xmake f -v
         # package/dev.sh
         package/linux-amd64.sh
 
