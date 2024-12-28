@@ -16,14 +16,12 @@ rule("static_binary")
 		end
 	end)
 
--- 添加 spdlog 的头文件路径
-add_includedirs("3rdparty/spdlog/include", {public = true})
-
 target("merge-otd")
 	set_kind("binary")
 	add_rules("static_binary")
 	add_deps("clipp", "fmt", "json", "nowide", "spdlog")
 	add_deps("intl")
+ add_includedirs("3rdparty/spdlog/include", {public = true})
 	add_files(
 		"src/merge-name.cpp",
 		"src/merge-otd.cpp",
@@ -36,6 +34,7 @@ target("otfccbuild")
 	add_deps("clipp", "fmt", "nowide", "spdlog")
 	add_deps("intl", "otfcc")
 	add_deps("config")
+ add_includedirs("3rdparty/spdlog/include", {public = true})
 	add_files(
 		"src/otfccbuild.cpp",
 		"src/stopwatch.cpp")
@@ -46,6 +45,7 @@ target("otfccdump")
 	add_deps("clipp", "fmt", "nowide", "spdlog")
 	add_deps("intl", "otfcc")
 	add_deps("config")
+ add_includedirs("3rdparty/spdlog/include", {public = true})
 	add_files(
 		"src/otfccdump.cpp",
 		"src/stopwatch.cpp")
