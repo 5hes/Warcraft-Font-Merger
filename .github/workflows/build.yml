@@ -40,9 +40,10 @@ jobs:
       run: |
         # 添加 Ubuntu 官方 GPG 密钥
         curl -fsSL http://archive.ubuntu.com/ubuntu/project/ubuntu-archive-keyring.gpg | sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/ubuntu.gpg
-        sudo apt update
+        sudo apt-get update
         apt list --upgradable
-        sudo apt install podman
+        sudo apt-get upgrade
+        sudo apt-get install podman
     
     - name: Building
       run: |
