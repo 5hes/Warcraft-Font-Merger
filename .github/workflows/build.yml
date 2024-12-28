@@ -25,9 +25,13 @@ jobs:
     - run: |
         curl https://nim-lang.org/choosenim/init.sh -sSf | sh -s -- -y
         export PATH=/home/runner/.nimble/bin:$PATH
+        echo $PATH
+        which nim
 
     - name: Building
       run: |
+        podman run -it --rm -v $PWD:/mnt -v /mnt -e XMAKE_ROOT=y alpine
+        apk add bash xmake gcc g++ xz
         xmake f -v
         # package/dev.sh
         package/linux-amd64.sh
