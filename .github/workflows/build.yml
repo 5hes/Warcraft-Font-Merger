@@ -30,7 +30,8 @@ jobs:
         
     - name: Building
       run: |
-        package/linux-amd64.sh
+          package/dev.sh
+        # package/linux-amd64.sh
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.5.0
