@@ -22,6 +22,7 @@ jobs:
 
     - name: Building
       run: |
+        xmake
         package/linux-amd64.sh
 
     - name: Upload a Build Artifact
