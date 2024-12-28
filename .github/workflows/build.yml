@@ -32,7 +32,7 @@ jobs:
       run: |
         podman run -it --rm -v $PWD:/mnt alpine /bin/sh -c "
           apk update && \
-          apk add bash xmake gcc g++ xz && \
+          apk add bash xmake gcc g++ xz musl-dev linux-headers && \
           cd /mnt && \
           export XMAKE_ROOT=y && \
           xmake f -v && \
