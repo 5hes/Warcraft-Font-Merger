@@ -26,15 +26,10 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get upgrade -y
-        mkdir nextflow
-        cd nextflow
-        curl -fsSL https://get.nextflow.io | bash
-        export PATH=$PATH:$PWD
+        sudo apt-get install clang gcc g++ xz 
         
     - name: Building
       run: |
-        podman run -it --rm -v $PWD:/mnt -v /mnt -e XMAKE_ROOT=y alpine
-        apk add bash xmake gcc g++ xz
         package/linux-amd64.sh
 
     - name: Upload a Build Artifact
