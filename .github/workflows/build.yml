@@ -22,7 +22,7 @@ jobs:
     
     # - run: sudo apt update && sudo apt install make -y
 
-    - run: curl https://nim-lang.org/choosenim/init.sh -sSf | sh
+    - run: curl https://nim-lang.org/choosenim/init.sh -sSf | sh -s -- -y
 
     - name: Building
       run: |
