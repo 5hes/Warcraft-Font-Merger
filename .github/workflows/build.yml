@@ -34,10 +34,12 @@ jobs:
           apk update && \
           apk add bash xmake gcc g++ xz && \
           cd /mnt && \
+          export XMAKE_ROOT=y && \
           xmake f -v && \
           bash package/linux-amd64.sh
+          tree
         "
-
+  
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.5.0
